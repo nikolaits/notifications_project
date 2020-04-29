@@ -41,7 +41,7 @@ setTimeout(() => {
         image: 'https://www.freeiconspng.com/uploads/leistungen-promotion-icon-png-0.png',
         title: 'off on sports betting',
         link: 'https://www.google.com/',
-        date: "Wed Apr 27 2020 14:38:32 GMT+0300 (Eastern European Summer Time)"
+        date: "Wed Apr 27 2020 18:38:32 GMT+0300 (Eastern European Summer Time)"
 
     }]
     showNotifications(dataArr);
@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // addClass(notificationsView,"fade-in");
     })
+    connectToWebSocketServer();
     console.log("document ready");
 })
 function showNotifications(arr) {
@@ -182,5 +183,12 @@ function addCartPromotion(id, title, link, image, date) {
         + '</div>'
         + '<div class="rightElement colorRed"><p>'+date.getHours()+':'+date.getMinutes()+'</p></div>'
         + '</div>'
+}
+function connectToWebSocketServer(){
+    const socket = new WebSocket('ws://127.0.0.1:9191');
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server ', event.data);
+        let sdata = JSON.parse(event.data);
+    });
 }
 // function(el, arr)

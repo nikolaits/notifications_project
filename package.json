@@ -1,0 +1,37 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "GPS Monster docs",
+  "main": "app.js",
+  "scripts": {
+    "serve": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/tsonevn/docs.git"
+  },
+  "author": "Nikolay Tsonev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/tsonevn/docs/issues"
+  },
+  "homepage": "https://gitlab.com/tsonevn/docs#README",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-route-reload": "^1.0.1",
+    "ws": "^7.2.5",
+    "ws-rate-limit": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.1",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "@types/ws": "^7.2.0",
+    "express-reload": "^1.2.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  }
+}
