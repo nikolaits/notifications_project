@@ -4,14 +4,17 @@ let dataArr = [
         type: 'text',
         title: 'Test notification',
         text: 'Test text notification',
-        expires: 3600
+        expires: 3600,
+        date: "Wed Apr 29 2020 18:38:32 GMT+0300 (Eastern European Summer Time)"
     },
     {
         id: 4322,
         type: 'bonus',
         title: 'You win a bonus!',
         requirement: 'Deposit $50 to win',
-        expires: 3600
+        expires: 3600,
+        date: "Wed Apr 27 2020 18:38:32 GMT+0300 (Eastern European Summer Time)"
+
     },
     {
         id: 5453,
@@ -19,13 +22,15 @@ let dataArr = [
         image: 'https://www.freeiconspng.com/uploads/leistungen-promotion-icon-png-0.png',
         title: '%30 off on sports betting',
         link: 'https://www.google.com/',
+        date: "Wed Apr 29 2020 18:38:32 GMT+0300 (Eastern European Summer Time)"
     },
     {
         id: 5236,
         type: 'text',
         title: 'Test notification',
         text: 'Test text notification',
-        expires: 5
+        expires: 5,
+        date: "Wed Apr 20 2020 18:38:32 GMT+0300 (Eastern European Summer Time)"
     }
 ]
 let arrayLNG = dataArr.length;
@@ -36,6 +41,8 @@ setTimeout(() => {
         image: 'https://www.freeiconspng.com/uploads/leistungen-promotion-icon-png-0.png',
         title: 'off on sports betting',
         link: 'https://www.google.com/',
+        date: "Wed Apr 27 2020 14:38:32 GMT+0300 (Eastern European Summer Time)"
+
     }]
     showNotifications(dataArr);
 }, 10000);
@@ -76,13 +83,13 @@ function showNotifications(arr) {
     arr.forEach(element => {
         switch (element.type) {
             case 'text':
-                innerhtml += addCartText(element.id, element.title, element.text);
+                innerhtml += addCartText(element.id, element.title, element.text, new Date(element.date));
                 break;
             case 'bonus':
-                innerhtml += addCartBonus(element.id, element.title, element.requirement);
+                innerhtml += addCartBonus(element.id, element.title, element.requirement, new Date(element.date));
                 break;
             case 'Promotion':
-                innerhtml += addCartPromotion(element.id, element.title, element.link, element.image);
+                innerhtml += addCartPromotion(element.id, element.title, element.link, element.image, new Date(element.date));
                 break;
 
             default:
@@ -137,7 +144,7 @@ function showNotifications(arr) {
         })
     };
 }
-function addCartText(id, title, text) {
+function addCartText(id, title, text, date) {
     return '<div class="notificationCart" id="' + id + '">'
         + '<div class="closeLine"><i class="close far fa-times-circle fa-xs"></i></div>'
         + '<div class="leftElement"><i class="far fa-bell fa-2x colorRed"></i></div>'
@@ -147,23 +154,23 @@ function addCartText(id, title, text) {
         + '<p>' + text + '</p>'
         + '</div>'
         + '</div>'
-        + '<div class="rightElement colorRed"><p>14:05</p></div>'
+        + '<div class="rightElement colorRed"><p>'+date.getHours()+':'+date.getMinutes()+'</p></div>'
         + '</div>'
 }
-function addCartBonus(id, title, requirement) {
+function addCartBonus(id, title, requirement, date) {
     return '<div class="notificationCart" id="' + id + '">'
         + '<div class="closeLine"><i class="close far fa-times-circle fa-xs"></i></div>'
-        + '<div class="leftElement"><i class="far fa-bell fa-2x colorRed"></i></div>'
+        + '<div class="leftElement"><i class="fas fa-gift fa-2x colorRed"></i></div>'
         + '<div class="centerElement">'
         + '<div>'
         + '<h2>' + title + '</h2>'
         + '<p>' + requirement + '<a href="https://google.com">https://google.com</a></p>'
         + '</div>'
         + '</div>'
-        + '<div class="rightElement colorRed"><p>14:05</p></div>'
+        + '<div class="rightElement colorRed"><p>'+date.getHours()+':'+date.getMinutes()+'</p></div>'
         + '</div>'
 }
-function addCartPromotion(id, title, link, image) {
+function addCartPromotion(id, title, link, image, date) {
     return '<div class="notificationCart" id="' + id + '">'
         + '<div class="closeLine"><i class="close far fa-times-circle fa-xs"></i></div>'
         + '<div class="leftElement"><img src="' + image + '"/></div>'
@@ -173,7 +180,7 @@ function addCartPromotion(id, title, link, image) {
         + '<p><a href="' + link + '">' + link + '</a></p>'
         + '</div>'
         + '</div>'
-        + '<div class="rightElement colorRed"><p>14:05</p></div>'
+        + '<div class="rightElement colorRed"><p>'+date.getHours()+':'+date.getMinutes()+'</p></div>'
         + '</div>'
 }
 // function(el, arr)
