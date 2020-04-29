@@ -65,10 +65,12 @@ function sendNotification(msg) {
 }
 function sendInitNotification(client) {
     let n = generateNotification("Promotion");
+    n["title"] = "%30 off on sports betting";
     client.send(JSON.stringify(n));
     let n2 = generateNotification("Promotion");
     client.send(JSON.stringify(n2));
     setInterval(() => {
+        n["title"] = "%30 off on sports betting";
         n["link"] = links[Math.floor(randomNumber(0, 2))];
         n["date"] = new Date().toString();
         // n2["title"]="%30 off on sports betting"+Math.floor(randomNumber(1000, 6000));

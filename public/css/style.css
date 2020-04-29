@@ -50,7 +50,7 @@ html, body {
   width: 80%;
   height: 60%;
   margin: 0 10%;
-  /* background-color: rgb(204, 10, 10); */
+  background-color: lightcoral;
   overflow: auto;
   /* visibility: hidden; */
   /* visibility: visible; */
@@ -69,7 +69,7 @@ html, body {
   position: relative;
   display: block;
   display: block;
-  /* background-color: green; */
+  background-color: lightgray;
   width: 40%;
   height: 20%;
   margin: 1% 30%;
