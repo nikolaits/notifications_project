@@ -169,7 +169,7 @@ function addCartBonus(id, title, requirement, date) {
         + '<div class="centerElement">'
         + '<div>'
         + '<h2>' + title + '</h2>'
-        + '<p>' + requirement + '<a href="https://google.com">https://google.com</a></p>'
+        + '<p>' + requirement + '</p>'
         + '</div>'
         + '</div>'
         + '<div class="rightElement colorRed"><p>'+date.getHours()+':'+date.getMinutes()+'</p></div>'
@@ -209,7 +209,7 @@ function registerCloseListeners(){
         };
 }
 function connectToWebSocketServer(){
-    const socket = new WebSocket('ws://127.0.0.1:9191');
+    const socket = new WebSocket('ws://127.0.0.1:9292');
     socket.addEventListener('message', function (event) {
         let sdata = JSON.parse(event.data);
         const found = dataArr.some(el => el.id === sdata.id);
