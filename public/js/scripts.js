@@ -108,25 +108,6 @@ function showNotifications(arr) {
     });
     let notificationsView = document.getElementById("notifications");
     notificationsView.innerHTML = innerhtml;
-    let closeElements = document.getElementsByClassName("close");
-    for (let element of closeElements) {
-        element.addEventListener("click", (event) => {
-            let elementToRemove = event.target.parentElement.parentElement;
-            elementToRemove.classList.add("fade-out");
-            let nheader = document.getElementById("noth");
-            // arrayLNG-=1;
-            // nheader.innerHTML = arrayLNG;
-            setTimeout(() => {
-                
-                elementToRemove.remove()
-                dataArr = dataArr.filter((obj) => {
-                    return obj.id !== parseInt(elementToRemove.id);
-                });
-                nheader.innerHTML = dataArr.length;
-                console.log("dataArr", dataArr)
-            },2500)
-        })
-    };
 }
 function addSingleElement(element){
     let notificationsView = document.getElementById("notifications");
@@ -207,6 +188,26 @@ function addCartPromotion(id, title, link, image, date) {
         + '<div class="rightElement colorRed"><p>'+date.getHours()+':'+date.getMinutes()+'</p></div>'
         + '</div>'
 }
+function registerCloseListeners(){
+    let closeElements = document.getElementsByClassName("close");
+        for (let element of closeElements) {
+            element.addEventListener("click", (event) => {
+                let elementToRemove = event.target.parentElement.parentElement;
+                elementToRemove.classList.add("fade-out");
+                let nheader = document.getElementById("noth");
+                // arrayLNG-=1;
+                // nheader.innerHTML = arrayLNG;
+                setTimeout(() => {
+                    elementToRemove.remove()
+                    dataArr = dataArr.filter((obj) => {
+                        return obj.id !== parseInt(elementToRemove.id);
+                    });
+                    nheader.innerHTML = dataArr.length;
+                    console.log("dataArr", dataArr)
+                },2500)
+            })
+        };
+}
 function connectToWebSocketServer(){
     const socket = new WebSocket('ws://127.0.0.1:9191');
     socket.addEventListener('message', function (event) {
@@ -219,6 +220,7 @@ function connectToWebSocketServer(){
             if(arrayClasses.includes("show")){
                     // addSingleElement(sdata);
                     showNotifications(dataArr);
+                    registerCloseListeners();
              }
         } else{
             let index = dataArr.findIndex(x => x.id ===sdata.id);
@@ -229,15 +231,17 @@ function connectToWebSocketServer(){
                 let removeElement = document.getElementById(sdata.id);
                 removeElement.remove();
                 addSingleElement(sdata);
+                registerCloseListeners();
             }
         }
 
         let nheader = document.getElementById("noth");
         let notificationsView = document.getElementById("notifications");
         nheader.innerHTML = dataArr.length;
-        const arrayClasses = [ ...notificationsView.classList ]
+        // const arrayClasses = [ ...notificationsView.classList ]
         // if(arrayClasses.includes("show")){
         //     showNotifications(dataArr);
         // }
+        
     });
 }
